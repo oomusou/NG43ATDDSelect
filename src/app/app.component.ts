@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   selectedId = '0';
 
-  onChange(element: HTMLSelectElement) {
-    this.selectedId = element.value;
+  onChange(event: Event) {
+    this.selectedId = (<HTMLSelectElement>event.target).value;
   }
 }
