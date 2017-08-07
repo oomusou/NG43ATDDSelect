@@ -1,32 +1,45 @@
-import { TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let debugElement: DebugElement;
+  let htmlElement: HTMLElement;
+  let target: AppComponent;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
-      ],
-    }).compileComponents();
-  }));
+      ]
+    });
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+    target = new AppComponent();
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  }));
+  });
+
+  describe(`ATDDSelect`, () => {
+    describe(`Integration Test`, () => {
+      it(`should use 'onChange()' on 'change' event in HTML`, () => {
+        spyOn(component, 'onChange');
+
+        debugElement.query(By.css('#TDDSelect')).triggerEventHandler('change', null);
+        expect(component.onChange).toHaveBeenCalled();
+      });
+
+      it(`should use 'selectedId' in HTML`, () => {
+        component.selectedId = '0';
+
+        htmlElement = debugElement.query(By.css('p')).nativeElement;
+        expect(htmlElement.textContent).toBe('0');
+      });
+    });
+  });
 });
