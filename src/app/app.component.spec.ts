@@ -41,5 +41,16 @@ describe('AppComponent', () => {
         expect(htmlElement.textContent).toBe('0');
       });
     });
+
+    describe(`Unit Test`, () => {
+      it(`should have 'onChange()' to make 'selectedId' as selected value in Class`, () => {
+        const element = <HTMLSelectElement>{
+          'value': '1'
+        };
+
+        target.onChange(element);
+        expect(target.selectedId).toBe('1');
+      });
+    });
   });
 });
