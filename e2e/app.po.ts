@@ -5,7 +5,15 @@ export class NG43ATDDSelectPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getSelectCount(): any {
+    return element(by.id('TDDSelect')).all(by.tagName('option')).count();
+  }
+
+  select(text: string) {
+    element(by.cssContainingText('option', text)).click();
+  }
+
+  getSelectedId(): any {
+    return element(by.css('p')).getText();
   }
 }
