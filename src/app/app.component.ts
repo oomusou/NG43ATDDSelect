@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  selectedId = '0';
+
+  onChange(element: HTMLSelectElement) {
+    this.selectedId = element.value;
+  }
 }
