@@ -35,10 +35,11 @@ describe('AppComponent', () => {
       });
 
       it(`should use 'selectedId' in HTML`, () => {
-        component.selectedId = '0';
+        component.selectedId = '1';
+        fixture.detectChanges();
 
         htmlElement = debugElement.query(By.css('p')).nativeElement;
-        expect(htmlElement.textContent).toBe('0');
+        expect(htmlElement.textContent).toBe('1');
       });
     });
 
