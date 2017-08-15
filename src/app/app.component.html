@@ -1,4 +1,4 @@
-<select id="TDDSelect" (change)="onChange(mySelect)" #mySelect>
+<select id="TDDSelect" [value]="selectedId" (change)="selectedId = $event.target.value">
   <option *ngFor="let cloud of clouds" [value]="cloud.id">{{ cloud.name }}</option>
 </select>
 <p>{{ selectedId }}</p>
