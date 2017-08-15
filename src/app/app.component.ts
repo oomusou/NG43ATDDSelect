@@ -8,13 +8,10 @@ import { Cloud } from './cloud';
 })
 export class AppComponent {
   selectedId = '0';
+
   clouds: Cloud[] = [
     {id: 0, name: 'AWS'},
     {id: 1, name: 'Azure'},
     {id: 2, name: 'Aliyun'}
   ];
-
-  onChange(element: HTMLSelectElement) {
-    this.selectedId = element.value;
-  }
 }
