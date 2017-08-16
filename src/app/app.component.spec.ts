@@ -32,7 +32,9 @@ describe('AppComponent', () => {
   describe(`ATDDSelect`, () => {
     describe(`Integration Test`, () => {
       it(`should have 'selectedId' field on 'ngModel' directive`, () => {
-        debugElement.query(By.css('#TDDSelect')).triggerEventHandler('change', {target: {value: '2'}});
+        htmlElement = debugElement.query(By.css('#TDDSelect')).nativeElement;
+        (<HTMLSelectElement>htmlElement).value = '2';
+        htmlElement.dispatchEvent(new Event('change'));
 
         expect(component.selectedId).toBe('2');
       });
