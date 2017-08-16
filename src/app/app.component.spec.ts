@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -15,7 +16,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
-      ]
+      ],
+      imports: [
+        FormsModule
+      ],
     });
 
     fixture = TestBed.createComponent(AppComponent);
@@ -27,30 +31,18 @@ describe('AppComponent', () => {
 
   describe(`ATDDSelect`, () => {
     describe(`Integration Test`, () => {
-      it(`should use 'onChange()' on 'change' event in HTML`, () => {
-        spyOn(component, 'onChange');
+      it(`should have 'selectedId' field on 'ngModel' directive`, () => {
+        debugElement.query(By.css('#TDDSelect')).triggerEventHandler('change', {target: {value: '2'}});
 
-        debugElement.query(By.css('#TDDSelect')).triggerEventHandler('change', null);
-        expect(component.onChange).toHaveBeenCalled();
+        expect(component.selectedId).toBe('2');
       });
 
-      it(`should use 'selectedId' in HTML`, () => {
+      it(`should use 'selectedId' field`, () => {
         component.selectedId = '1';
         fixture.detectChanges();
 
         htmlElement = debugElement.query(By.css('p')).nativeElement;
         expect(htmlElement.textContent).toBe('1');
-      });
-    });
-
-    describe(`Unit Test`, () => {
-      it(`should have 'onChange()' to make 'selectedId' as selected value in Class`, () => {
-        const element = <HTMLSelectElement>{
-          'value': '1'
-        };
-
-        target.onChange(element);
-        expect(target.selectedId).toBe('1');
       });
     });
   });
