@@ -14,21 +14,21 @@ describe('NG43ATDDSelect', () => {
 
   it(`should show '0' when selecting 'AWS' `, () => {
     page.navigateTo();
-    page.select('AWS');
+    page.selectCloud('AWS');
 
     expect(page.getSelectedId()).toBe('0');
   });
 
   it(`should show '1' when selecting 'Azure'  `, () => {
     page.navigateTo();
-    page.select('Azure');
+    page.selectCloud('Azure');
 
     expect(page.getSelectedId()).toBe('1');
   });
 
   it(`should show '2' when selecting 'Aliyun`, () => {
     page.navigateTo();
-    page.select('Aliyun');
+    page.selectCloud('Aliyun');
 
     expect(page.getSelectedId()).toBe('2');
   });
